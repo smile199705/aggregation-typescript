@@ -7,9 +7,7 @@ export default defineConfig({
   model: {},
   initialState: {},
   request: {},
-  layout: {
-    title: '自闭症分析系统'
-  },
+  layout: {},
   routes,
   npmClient: 'yarn',
 });

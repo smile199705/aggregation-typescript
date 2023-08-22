@@ -54,7 +54,7 @@ export const layout: RunTimeLayoutConfig = ({initialState}) => {
             locale: false, //菜单是否国际化
         },
         layout: 'top', //菜单的方式，有mix,top,side三种，mix模式子菜单在侧边栏展示，top模式为悬浮展示
-        splitMenus: true, // 这里用了mix才会生效,bia
+        // splitMenus: true, // 这里用了mix才会生效,bia
         contentWidth: 'Fluid', // 自适应大小
         // avatarProps: {
         //     src: initialState?.avatar || undefined, //右上角头像
