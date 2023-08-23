@@ -6,17 +6,20 @@ const routes = [
     {
         name: '首页',
         path: '/home',
-        component: './Home',
+        component: './home',
     },
     {
         name: '权限演示',
         path: '/access',
-        component: './Access',
+        component: './access',
+        wrappers: [
+            '@/wrappers/auth',
+        ],
     },
     {
         name: ' CRUD 示例',
         path: '/table',
-        component: './Table',
+        component: './table',
     },
     {
         name: ' DEMO测试',
@@ -27,16 +30,22 @@ const routes = [
                 // icon: ChromeFilled,
                 name: '二级',
                 path: '/demo/2',
-                component: '@/pages/Demo'
+                component: '@/pages/demo'
             },
             {
                 // icon: CrownFilled,
                 name: '三级级',
                 path: '/demo/3',
-                component: '@/pages/Test'
+                component: '@/pages/test'
             }
         ]
     },
+    {
+        name: '登陆页面',
+        path: '/user/login',
+        component: '@/pages/user/login',
+        layout: false
+    }
 ]
 
 export default routes

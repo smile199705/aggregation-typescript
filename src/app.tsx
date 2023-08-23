@@ -17,7 +17,7 @@
 
 import GlobalFooter from "@/components/GlobalFooter";
 
-require('@/utils/request')
+import '@/utils/request'
 
 
 // 运行时配置
@@ -27,20 +27,30 @@ import {
     RunTimeLayoutConfig,
     RuntimeAntdConfig,
 } from '@umijs/max';
+import RightContent from "@/components/GlobalHeader/RightContent";
+import {getLoginUser} from "@/services/userService";
 
 // 全局初始化数据配置，用于 Layout 用户信息和权限初始化
 // 更多信息见文档：https://umijs.org/docs/api/runtime-config#getinitialstate
 
 // 登录函数返回内容
-export async function getInitialState(): Promise<{
-    name: string;
-    avatar?: string;
-}> {
-    return {
-        name: '小伟',
-        avatar:
-            'https://p26-passport.byteacctimg.com/img/user-avatar/312989b46037c16843b1eb44aea82fa2~180x180.awebp?',
-    };
+export async function getInitialState(): Promise<InitialState> {
+    // console.log('2222222222')
+    const defaultState: InitialState = {
+        loginUser: undefined
+    }
+    // 获取当前登录用户
+    try {
+        const res = await getLoginUser();
+        defaultState.loginUser = res.loginUser;
+        console.log('2222222222', defaultState)
+    } catch (e) {}
+    return defaultState;
+    // return {
+    //     name: '小伟',
+    //     avatar:
+    //         'https://p26-passport.byteacctimg.com/img/user-avatar/312989b46037c16843b1eb44aea82fa2~180x180.awebp?',
+    // };
 }
 
 //运行时基本布局配置
@@ -65,6 +75,11 @@ export const layout: RunTimeLayoutConfig = ({initialState}) => {
         contentStyle: {
             paddingBottom: 120,
         },
+        // 自定义 403 页面
+        unAccessible: <div>'unAccessible'</div>,
+        // 自定义 404 页面
+        noFound: <div>'noFound'</div>,
+        rightContentRender: () => <RightContent />,
         footerRender: () => <GlobalFooter />
     };
 };
